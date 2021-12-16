@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react'
+import TodaysWeather from '../../components/TodaysWeather';
 import cities from '../../lib/city.list.json'
 
 
@@ -29,7 +30,7 @@ export async function getServerSideProps(context) {
     // const slug = context.params.city;
 
     const hourlyWeather = getHourlyWeather(data.hourly);
-    console.log(hourlyWeather)
+    // console.log(hourlyWeather)
     return {
         props: {
             city: city,
@@ -91,6 +92,11 @@ export default function City({
           <Head>
               <title>{city.name} Next Weather</title>
           </Head>
+          <div className="page-wrapper">
+              <div className="container">
+                  <TodaysWeather city={city} weather={dailyWeather[0]} />
+              </div>
+          </div>
       </div>
     )
 }
