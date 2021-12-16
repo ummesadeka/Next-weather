@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React from 'react'
 import TodaysWeather from '../../components/TodaysWeather';
 import cities from '../../lib/city.list.json'
+import moment from 'moment-timezone'
 
 
 export async function getServerSideProps(context) {
@@ -29,11 +30,12 @@ export async function getServerSideProps(context) {
 
     // const slug = context.params.city;
 
-    const hourlyWeather = getHourlyWeather(data.hourly);
+    const hourlyWeather = getHourlyWeather(data.hourly, data.timezone);
     // console.log(hourlyWeather)
     return {
         props: {
             city: city,
+            timezone: data.timezone,
             currentWeather: data.current,
             dailyWeather: data.daily,
             hourlyWeather: hourlyWeather,
@@ -61,17 +63,10 @@ const getCity = param => {
     }
 }
 
-const getHourlyWeather = (hourlyData) => {
-    const current = new Date();
-    current.setHours(current.getHours(), 0, 0, 0);
-    const tomorrow = new Date(current);
-    tomorrow.setHours(0,0,0,0);
-
-    // divide by 1000 to gey timeStamp in seconds
-    const currentTimeStamp = Math.floor(current.getTime()/1000);
-    const tomorrowTimeStamp = Math.floor(tomorrow.getTime()/ 1000);
-
-    const todaysData = hourlyData.filter((data) => data.dt < tomorrowTimeStamp)
+const getHourlyWeather = (hourlyData, timezone) => {
+     const endOfDay = moment().tz(timezone).endOf('day').valueOf();
+     const eodTimeStamp = Math.floor(endOfDay / 1000)
+    const todaysData = hourlyData.filter((data) => data.dt < eodTimeStamp)
 
     return todaysData;
 }
@@ -82,8 +77,10 @@ export default function City({
     hourlyWeather,
     currentWeather, 
     dailyWeather,
-    city }) {
-    // console.log(hourlyWeather);
+    city,
+    timezone
+}) {
+    console.log(hourlyWeather);
     // console.log(currentWeather)
     // console.log(city)
     // console.log(dailyWeather)
@@ -94,7 +91,10 @@ export default function City({
           </Head>
           <div className="page-wrapper">
               <div className="container">
-                  <TodaysWeather city={city} weather={dailyWeather[0]} />
+                  <TodaysWeather
+                   city={city} 
+                   weather={dailyWeather[0]}
+                   timezone={timezone} />
               </div>
           </div>
       </div>
