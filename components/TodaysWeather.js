@@ -36,7 +36,9 @@ export default function TodaysWeather({ city, weather, timezone }) {
                             <Image 
                             src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
                             alt="Weather Icon" 
-                            layout="fill" 
+                            // layout="fill" 
+                            width={230}
+                            height={230}
                             />
                         </div>
                     </div>

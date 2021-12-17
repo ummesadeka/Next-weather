@@ -71,8 +71,6 @@ const getHourlyWeather = (hourlyData, timezone) => {
     return todaysData;
 }
 
-
-
 export default function City({ 
     hourlyWeather,
     currentWeather, 
