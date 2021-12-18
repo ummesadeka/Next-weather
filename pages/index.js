@@ -11,8 +11,7 @@ export default function Home() {
 
       <div className="home">
         <div className="container">
-          <SearchBox placeholder="Search for a city"/>
-     {/*  */}
+          <SearchBox placeholder="Search for a city..."/>
         </div>
       </div>
     </div>

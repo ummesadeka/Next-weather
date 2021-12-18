@@ -5,6 +5,7 @@ import cities from '../../lib/city.list.json'
 import moment from 'moment-timezone'
 import HourlyWeather from '../../components/HourlyWeather';
 import WeeklyWeather from '../../components/WeeklyWeather';
+import SearchBox from '../../components/SearchBox'
 
 
 export async function getServerSideProps(context) {
@@ -91,6 +92,7 @@ export default function City({
           </Head>
           <div className="page-wrapper">
               <div className="container">
+                  <SearchBox placeholder="Search for another location..." />
                   <TodaysWeather
                    city={city} 
                    weather={dailyWeather[0]}
