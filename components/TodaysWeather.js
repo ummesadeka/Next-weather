@@ -3,8 +3,8 @@ import moment from 'moment-timezone'
 import Image from 'next/image';
 
 export default function TodaysWeather({ city, weather, timezone }) {
-    console.log(city);
-    console.log(weather);
+    // console.log(city);
+    // console.log(weather);
     return (
         <div className="today">
             <div className="today__inner">

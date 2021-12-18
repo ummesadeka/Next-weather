@@ -3,6 +3,8 @@ import React from 'react'
 import TodaysWeather from '../../components/TodaysWeather';
 import cities from '../../lib/city.list.json'
 import moment from 'moment-timezone'
+import HourlyWeather from '../../components/HourlyWeather';
+import WeeklyWeather from '../../components/WeeklyWeather';
 
 
 export async function getServerSideProps(context) {
@@ -93,6 +95,8 @@ export default function City({
                    city={city} 
                    weather={dailyWeather[0]}
                    timezone={timezone} />
+                   <HourlyWeather hourlyWeather={hourlyWeather} timezone={timezone} />
+                   <WeeklyWeather />
               </div>
           </div>
       </div>
