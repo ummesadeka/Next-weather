@@ -1,21 +1,20 @@
-import Head from 'next/head'
-import FamousPlaces from '../components/FamousPlaces'
-import SearchBox from '../components/SearchBox'
-
+import Head from 'next/head';
+import FamousPlaces from '../components/FamousPlaces';
+import SearchBox from '../components/SearchBox';
 
 export default function Home() {
   return (
-    <div >
+    <div>
       <Head>
-        <title> Next Weather</title>
+        <title> SkySpectra </title>
       </Head>
 
       <div className="home">
         <div className="container">
-          <SearchBox placeholder="Search for a city..."/>
+          <SearchBox placeholder="Search for a city..." />
           <FamousPlaces />
         </div>
       </div>
     </div>
-  )
+  );
 }
